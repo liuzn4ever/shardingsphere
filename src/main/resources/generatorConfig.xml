@@ -8,7 +8,7 @@
 
     <context id="MysqlTables" targetRuntime="MyBatis3">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://122.112.200.236:3306/sharding?useSSL=false"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/sharding?useSSL=false"
                         userId="root"
                         password="123qwe">
         </jdbcConnection>
@@ -33,8 +33,6 @@
         <table  tableName="t_order" domainObjectName="Order" >
         </table>
 
-        <table  tableName="t_order_item" domainObjectName="OrderItem" >
-        </table>
 
     </context>
 </generatorConfiguration>

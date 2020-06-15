@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,12 +23,14 @@ class ShardingsphereApplicationTests {
 
     @Test
     void TestInsertOrder(){
-        Order order = new Order();
-        order.setMemberId(126L);
-        order.setCreateTime(new Date());
-        order.setOrderSn("1000102");
-        order.setStatus(1);
-        orderService.createOrder(order);
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(new Order("111111",100L,new Date(),1));
+        orderList.add(new Order("222222",101L,new Date(),1));
+        orderList.add(new Order("333333",102L,new Date(),1));
+        orderList.add(new Order("444444",103L,new Date(),1));
+        for(Order order:orderList){
+            orderService.createOrder(order);
+        }
     }
 
 
@@ -38,18 +41,16 @@ class ShardingsphereApplicationTests {
         for (Order o:orderList){
             System.out.println(o.toString());
         }
-
     }
     @Test
     void TestListOrder2(){
         OrderExample orderExample = new OrderExample();
         OrderExample.Criteria criteria = orderExample.createCriteria();
-        criteria.andMemberIdEqualTo(123L);
+        criteria.andMemberIdEqualTo(101L);
         List<Order> orderList= orderService.listOrder(orderExample);
         for (Order o:orderList){
             System.out.println(o.toString());
         }
-
     }
 
 
